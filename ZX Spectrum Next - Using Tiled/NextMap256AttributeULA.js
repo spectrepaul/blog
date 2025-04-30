@@ -1,16 +1,17 @@
-/* NextMap512Attribute.js
+/* NextMap256AttributeULA.js
  *
  * A Tiled plugin to export a tile map as a binary file with hex values.
  * Blank tiles with a value of -1 are replaced with 00.
- * Supports tile ID's up to 512 and using the attribute byte.
+ * Supports tile ID's up to 256 and using the attribute byte.
  * Includes Rotate, Flip both ways and Palette Offset using the same tile.
+ * Also includes support of bit 8 of the high byte for tile on top or below the ULA.
  * 
  * By Paul Spectre Harthen
  *
  */
 
-var customZXNextBinaryExport512Attribute = {
-    name: "ZXNext Map 512 tile mode with Attribute",
+var customZXNextBinaryExport256AttributeULA = {
+    name: "ZXNext Map 256 tile mode with Attribute ULA",
     extension: "map",
     write: function(p_map, p_fileName) {
        
@@ -26,13 +27,6 @@ var customZXNextBinaryExport512Attribute = {
                         let mapTile = mapLayer.cellAt(x, y);
                         let mapTileID = mapTile.tileId;
                         
-
-                        if (mapTileID === -1) {
-                            bytes.push(0x00); // Represent blank tile as 0x00
-                            bytes.push(0x00); // Add a second 0x00 for the high byte
-                            continue;
-                        }
-
                         let D = mapTile.flippedAntiDiagonally ? 1 : 0;
                         let V = mapTile.flippedVertically ? 1 : 0;
                         let H = mapTile.flippedHorizontally ? 1 : 0;
@@ -55,23 +49,25 @@ var customZXNextBinaryExport512Attribute = {
                             rotateBit = D;
                         }
 
-                        let baseTileID = mapTileID & 0x1FF;
-                        let lowByte = baseTileID & 0xFF;
-                        let tileRangeBit = (baseTileID > 255) ? 1 : 0;
+                        let lowByte = mapTileID === -1 ? 0x00 : mapTileID & 0xFF;
 
                         // Lookup PaletteOffset
                         let offsetTile = offsetLayer.cellAt(x, y);
                         let offsetTileID = (offsetTile.tileId === -1) ? 0 : offsetTile.tileId;
-                        let paletteBits = offsetTileID & 0x0F;
+                        let ULABit = (offsetTileID > 15) ? 1 : 0;
+                        //let paletteBits = offsetTileID & 0x0F;
+                        let paletteBits = (offsetTileID > 15) ? (offsetTileID-16) & 0x0F : offsetTileID & 0x0F;
+
 
                         let highByte = (paletteBits << 4)
                                         | (xMirrorBit << 3)
                                         | (yMirrorBit << 2)
                                         | (rotateBit << 1)
-                                        | (tileRangeBit << 0);
+                                        | (ULABit << 0);
 
                         bytes.push(lowByte);
                         bytes.push(highByte);
+
                     }
                 }
             }
@@ -85,4 +81,4 @@ var customZXNextBinaryExport512Attribute = {
     }
 };
 
-tiled.registerMapFormat("zxnextBinaryExport512Attribute", customZXNextBinaryExport512Attribute);
+tiled.registerMapFormat("zxnextBinaryExport256AttributeULA", customZXNextBinaryExport256AttributeULA);

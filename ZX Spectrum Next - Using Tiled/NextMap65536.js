@@ -1,15 +1,15 @@
-/* NextMap256.js
+/* NextMap65536.js
  *
  * A Tiled plugin to export a tile map as a binary file with hex values.
- * Blank tiles with a value of -1 are replaced with 00.
- * Supports tile ID's up to 256 (Examples 64 tiles for 16x16 pixels and 256 for 8x8 pixels)
+ * Blank tiles with a value of -1 are replaced with 00 00.
+ * Supports tile ID's up to 65536 (For users thinking outside the box.)
  * 
  * By Paul Spectre Harthen
  *
  */
 
-var customZXNextBinaryExport256 = {
-    name: "ZXNext Map 256 tile mode",
+var customZXNextBinaryExport65536 = {
+    name: "ZXNext Map 65536 tile mode",
     extension: "map",
 
     write: function(p_map, p_fileName) {
@@ -25,8 +25,13 @@ var customZXNextBinaryExport256 = {
                         let currentTile = currentLayer.cellAt(x, y);
                         let currentTileID = currentTile.tileId;
 
-                        let byteValue = currentTileID === -1 ? 0x00 : currentTileID & 0xFF;
-                        bytes.push(byteValue);
+                        if (currentTileID === -1) {
+                            bytes.push(0x00, 0x00);
+                        } else {
+                            let highByte = (currentTileID >> 8) & 0xFF;
+                            let lowByte = currentTileID & 0xFF;
+                            bytes.push(lowByte, highByte);
+                        }
                     }
                 }
             }
@@ -38,5 +43,4 @@ var customZXNextBinaryExport256 = {
     }
 };
 
-tiled.registerMapFormat("zxnextBinaryExport256", customZXNextBinaryExport256);
-
+tiled.registerMapFormat("zxnextBinaryExport65536", customZXNextBinaryExport65536);
