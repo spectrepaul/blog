@@ -18,9 +18,16 @@ Once you press create it will then make the correct image with a palette of:<br>
 _SpectrumNext_Palette_Convert.lua_<br>
 <br>
 Here you need a colour indexed image to work with or you are working on, then run this script and select the type of colour distancing technique before applying.<br>
-It will then use this method to check the palette colours of the image and map them to the closest it can find from the 512 available 9bit colours of the Spectrum Next, hopefully without changing the palette too much.
+It will then use this method to check the palette colours of the image and map them to the closest it can find from the 512 available 9bit colours of the Spectrum Next, hopefully without changing the palette too much.<br>
 <br><br><br>
-There will be more useful ones to follow so make sure you call back.<br>
+_SpectrumNext_SpriteSheet_Export.lua_<br>
+<br>
+Use this script to export your sprites or tiles directly from within Aseprite, to load into a memory bank, for example in Boriel Studio or NextBuild. No conversion or other tools are required!<br>
+All you have to do is select pixel size of the sprites/tiles, 8 or 16, and number of colours, 16 or 256.<br>
+The script will then chop up the image from top left to bottom right.<br>
+I will be adding to this very soon to include other features, but this is good to get your started.<br>
+<br><br><br>
+There will be more useful scripts to follow so make sure you call back.<br>
 Have fun and I hope you enjoy the posts and find these materials useful!<br>
 
 Find out all the latest here: https://www.pandapus.com/
