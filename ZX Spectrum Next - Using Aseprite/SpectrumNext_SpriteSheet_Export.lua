@@ -1,3 +1,6 @@
+-- ZX Spectrum Sprite & Tile Exporter
+-- By Paul "Spectre" Harthen
+
 local sprite = app.activeSprite
 
 -- Validation: Sprite presence and colour mode
