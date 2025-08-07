@@ -43,7 +43,7 @@ The size of your spritesheet determines how many sprites/tiles are chopped up, a
 The colour palette you use for your image is also down to you, so make sure it is compatible with the Next, however this enables you to use any selection of colours from the 512 available. You would just need to use the same palette in your game.<br>
 It has some simple error checking. So if there is no file loaded to export it will exit. If the image is not divisable by either 8 or 16 it will not proceed and if you have more or less colours in your palette than you are trying to export, again it will not proceed.<br>
 <br>
-I will be adding to this very soon to include other features, like palette export and an option to select the number of sprites to cut up, but this is good to get your started.<br>
+I will be adding to this very soon to include other features, like palette export and an option to select the number of sprites to cut up, but this is good to get you started.<br>
 <br><br><br><br>
 _3 - SpectrumNext_Palette_Convert.lua_<br>
 <br>
