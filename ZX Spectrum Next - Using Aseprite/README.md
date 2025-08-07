@@ -51,6 +51,8 @@ Here you need a colour indexed image to work with or you are working on (as an e
 <br>
 Options are - Euclidean, Manhattan, Chebyshev, CIE76, CIEDE2000<br>
 <br>
+<img width="818" height="612" alt="image" src="https://github.com/user-attachments/assets/9a9fa85e-0b25-491b-9192-b6dcca307971" />
+<br><br>
 When run, it will use the method selected to check the palette colours of the image and map them to the closest it can find from the 512 available 9bit colours of the Spectrum Next, hopefully without changing the palette too much.<br>
 I will be looking further into this for other possible options which may be useful, so stay tuned!<br>
 <br><br><br><br><br>
