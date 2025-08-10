@@ -1,4 +1,4 @@
-# Aseprite scripts for the ZX Spectrum Next
+# Spectres Plugins for the ZX Spectrum Next (Aseprite)
 
 I have created a series of scripts you can download and copy directly to the default Aseprite script folder.<br>
 <br>
