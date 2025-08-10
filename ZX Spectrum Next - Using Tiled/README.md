@@ -1,4 +1,4 @@
-# Tiled scripts for the ZX Spectrum Next
+# Spectres Plugins for the ZX Spectrum Next (Tiled)
 
 I have created a series of plugin scripts to be placed in the default Tiled plugins folder.<br>
 You can find the folder location to copy to, by opening Tiled and selecting preferences and plugins. Then press Open to get to the directory.<br>
