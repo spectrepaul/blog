@@ -1,13 +1,15 @@
 # Spectres Plugins for the ZX Spectrum Next (Aseprite)
 
-I have created a series of scripts you can download and copy directly to the default Aseprite script folder.<br>
+I have created a series of plugin scripts you can download and copy directly to the default Aseprite script folder.<br>
 <br>
-You can find the folder location to copy to, by opening Aseprite and in the menu selecting:<br>
+For this, you will need the Aseprite software, which you can find here: https://www.aseprite.org/
+<br>
+Once this is installed, the folder location to copy the plugins to, can be found by opening Aseprite and in the menu selecting:<br>
 _File / Scripts / Open scripts folder_<br>
 <br>
 Once copied to the folder, open Aseprite and go to file/scripts and you will see the options to run. If you already have Aseprite open when copying the scripts to the folder, close and open Aseprite again for them to take effect.<br>
 <br><br>
-SCRIPTS:<br>
+PLUGIN SCRIPTS:<br>
 _1 - SpectrumNext_SpriteSheet_CreateBlank.lua_<br>
 <br>
 This will create a blank image with a Spectrum Next default palette ready to draw your creations.<br>
