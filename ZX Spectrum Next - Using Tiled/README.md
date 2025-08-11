@@ -1,13 +1,15 @@
 # Spectres Plugins for the ZX Spectrum Next (Tiled)
 
 I have created a series of plugin scripts to be placed in the default Tiled plugins folder.<br>
-You can find the folder location to copy to, by opening Tiled and selecting preferences and plugins. Then press Open to get to the directory.<br>
+For this, you will need the Tiled software, which you can find here: https://www.mapeditor.org/
+<br>
+Once installed, you can find the folder location to copy to, by opening Tiled and selecting preferences and plugins. Then press Open to get to the directory.<br>
 You will also need the PNG images I created for numbers 0-15, to use as reference tiles, however these don't go in the plugins folder, so save elsewhere.<br>
 <br>
 When the files are saved in the plugins folder, you'll know if it's worked, as you should just be able to select Export from the file option, (You may have to restart Tiled, although I found I didn't need to.) and from the file type dropdown, you will see 4 export options for ".map"<br><br>
 <img width="483" height="270" alt="image" src="https://github.com/user-attachments/assets/cc4a371d-1560-4943-8362-3b9fabcfe6fe" />
 <br><br><br>
-SCRIPTS:<br>
+PLUGIN SCRIPTS:<br>
 _1st set of scripts - NextMap256.js & NextMap65536.js_<br>
 <br>
 Creating a map using the 256 & 65536 exports, is quite straight forward. These are for the Layer 2 mode on the Speccy Next.<br>
