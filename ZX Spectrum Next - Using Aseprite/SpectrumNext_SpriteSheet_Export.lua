@@ -14,7 +14,7 @@ if sprite.colorMode ~= ColorMode.INDEXED then
   return
 end
 
--- Export Info Dialog
+-- Export Info Dialog (initial tile size and colour depth)
 local exportDialog = Dialog("Export Info")
 exportDialog:combobox{
   id = "tileSize",
@@ -50,6 +50,30 @@ elseif colorDepth == 256 and paletteSize ~= 256 then
   return
 end
 
+-- Calculate maximum number of tiles
+local maxTiles = (sprite.width // tileSize) * (sprite.height // tileSize)
+
+-- Dialog for number of tiles to export
+local countDialog = Dialog("Tile Count")
+countDialog:number{
+  id = "tileCount",
+  label = "Number to Export",
+  text = tostring(maxTiles)
+}
+countDialog:button{ id = "ok", text = "OK" }
+countDialog:show()
+
+local tileCount = tonumber(countDialog.data.tileCount)
+
+-- Validate tile count
+if tileCount == nil or tileCount <= 0 then
+  app.alert("Number to Export must be greater than 0.")
+  return
+elseif tileCount > maxTiles then
+  app.alert("Number to Export exceeds maximum possible tiles (" .. maxTiles .. ").")
+  return
+end
+
 -- Export tiles
 local function writeTile(img, x, y, size, file, depth)
   for cy = 0, size - 1 do
@@ -76,15 +100,17 @@ local function writeTile(img, x, y, size, file, depth)
   end
 end
 
-
--- Export all tiles from current frame
-local function exportCurrentFrame(file, size, depth)
+-- Export all tiles from current frame, up to tileLimit
+local function exportCurrentFrame(file, size, depth, tileLimit)
   local img = Image(sprite.spec)
   img:drawSprite(sprite, app.activeFrame)
 
+  local tilesWritten = 0
   for y = 0, sprite.height - 1, size do
     for x = 0, sprite.width - 1, size do
+      if tilesWritten >= tileLimit then return end
       writeTile(img, x, y, size, file, depth)
+      tilesWritten = tilesWritten + 1
     end
   end
 end
@@ -105,7 +131,7 @@ dlg:show()
 local data = dlg.data
 if data.ok and data.exportFile ~= "" then
   local f = io.open(data.exportFile, "wb")
-  exportCurrentFrame(f, tileSize, colorDepth)
+  exportCurrentFrame(f, tileSize, colorDepth, tileCount)
   f:close()
 
   app.alert("Export complete.")
