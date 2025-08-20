@@ -22,33 +22,55 @@ local function exportNXI(image, path, paletteSize, is320x256Multiple)
     return
   end
 
-  local writeIndex
   if paletteSize == 16 then
-    writeIndex = function(x, y)
-      local i1 = image:getPixel(x, y) & 0x0F
-      local i2 = image:getPixel(x + 1, y) & 0x0F
-      local packed = (i1 << 4) | i2
-      file:write(string.char(packed))
-    end
-  elseif paletteSize == 256 then
-    writeIndex = function(x, y)
-      local index = image:getPixel(x, y) & 0xFF
-      file:write(string.char(index))
-    end
-  end
-
-  if is320x256Multiple then
-    -- Top-to-bottom, left-to-right
-    for x = 0, image.width - 1, (paletteSize == 16 and 2 or 1) do
+    if is320x256Multiple then
+      -- Top-to-bottom, left-to-right
+      for x = 0, image.width - 1 do
+        local y = 0
+        while y < image.height do
+          local px1 = image:getPixel(x, y) & 0x0F
+          local px2 = 0
+          if y + 1 < image.height then
+            px2 = image:getPixel(x, y + 1) & 0x0F
+          end
+          local packed = (px1 << 4) | px2
+          file:write(string.char(packed))
+          y = y + 2
+        end
+      end
+    else
+      -- Left-to-right, top-to-bottom
       for y = 0, image.height - 1 do
-        writeIndex(x, y)
+        local x = 0
+        while x < image.width do
+          local px1 = image:getPixel(x, y) & 0x0F
+          local px2 = 0
+          if x + 1 < image.width then
+            px2 = image:getPixel(x + 1, y) & 0x0F
+          end
+          local packed = (px1 << 4) | px2
+          file:write(string.char(packed))
+          x = x + 2
+        end
       end
     end
-  else
-    -- Default: Left-to-right, top-to-bottom
-    for y = 0, image.height - 1 do
-      for x = 0, image.width - 1, (paletteSize == 16 and 2 or 1) do
-        writeIndex(x, y)
+
+  elseif paletteSize == 256 then
+    if is320x256Multiple then
+      -- Top-to-bottom, left-to-right
+      for x = 0, image.width - 1 do
+        for y = 0, image.height - 1 do
+          local index = image:getPixel(x, y) & 0xFF
+          file:write(string.char(index))
+        end
+      end
+    else
+      -- Left-to-right, top-to-bottom
+      for y = 0, image.height - 1 do
+        for x = 0, image.width - 1 do
+          local index = image:getPixel(x, y) & 0xFF
+          file:write(string.char(index))
+        end
       end
     end
   end
@@ -153,7 +175,7 @@ if data.ok and data.exportFile ~= "" then
     if not path:match("%.bmp$") then path = path .. ".bmp" end
 
     local exportSprite = Sprite(transformed.width, transformed.height, ColorMode.INDEXED)
-    exportSprite.transparentColor = -1  -- Ensure index 0 is visible
+    exportSprite.transparentColor = -1
     exportSprite:setPalette(sprite.palettes[1])
     exportSprite.cels[1].image:drawImage(transformed, Point(0, 0))
     exportSprite:saveCopyAs(path)
