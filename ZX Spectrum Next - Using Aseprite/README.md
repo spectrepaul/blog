@@ -17,15 +17,16 @@ Options on running the script:<br>
 <br>
 Sprite Size - 8 or 16<br>
 Grid Size in X and Y - Enter a positive number<br>
-Colours - 16, 256 or 512<br>
+Colours - 16, 256, 512 or 4096<br>
 <br>
 <img width="486" height="440" alt="image" src="https://github.com/user-attachments/assets/bbe71767-fb52-496a-a96b-5573562fa02c" />
 <br><br>
 Once you press create, it will then make a blank image ready to draw, with a palette of:<br>
 <br>
-16  - Standard Spectrum<br>
+16 - Standard Spectrum<br>
 256 - Spectrum Next RRRGGGBB<br>
 512 - Spectrum Next RRRGGGBBB<br>
+4096 - Spectrum Next RRRRGGGGBBBB (The proposed 12bit colour palette from KS3)<br>
 <br>
 To change the checkerboard background size when the image is created, you can select: Edit, Preferences and Background, then select the background grid size for the active doc as 8x8 or 16x16.
 <br><br>
@@ -37,10 +38,8 @@ _2 - SpectrumNext_SpriteSheet_Export.lua_<br>
 Use this script to export your sprites or tiles directly from within Aseprite, to load into a memory bank, for example in Boriel Studio or NextBuild. No conversion or other tools are required!<br>
 All you have to do is select pixel size of the sprites/tiles, 8 or 16, and number of colours, 16 or 256.<br>
 The script will then chop up the image from top left to bottom right.<br><br>
-<img width="326" height="220" alt="image" src="https://github.com/user-attachments/assets/03adffc1-6c40-4934-85ff-5b5f049d03a9" />
-<br>
-<img width="342" height="181" alt="image" src="https://github.com/user-attachments/assets/79049e7c-8dbf-4fb2-af3e-94a74cae2510" />
-<br>
+<img width="326" height="220" alt="image" src="https://github.com/user-attachments/assets/03adffc1-6c40-4934-85ff-5b5f049d03a9" /><br>
+<img width="342" height="181" alt="image" src="https://github.com/user-attachments/assets/79049e7c-8dbf-4fb2-af3e-94a74cae2510" /><br>
 <img width="332" height="186" alt="image" src="https://github.com/user-attachments/assets/7e143dc6-5e27-4dbd-8d65-f91147bbe21f" />
 <br><br>
 The size of your spritesheet determines the maximum number of sprites/tiles which are possible to be chopped up, there is no limit and it is not capped. For example, a maximum of 64, 16x16 sprites, could use an image of 64x256 pixels in size or even start with creating a blank image with script 1 above and select 16 for sprite size and grid of 4x16.<br>
@@ -66,23 +65,42 @@ It can export both 16 and 256, 9-bit indexed colour palettes in full, from those
 If you have a 256 palette using multiple groups of 16, you can then select the offset to export these groups.<br>
 The priority bit (bit 7 of the 2nd byte) is not exported with the palette. This is provided in the next plugin below for the Palette Viewer.<br>
 <br>
-<img width="307" height="174" alt="image" src="https://github.com/user-attachments/assets/7227c983-5145-4fef-96ae-29865b52cd4c" />
-<br>
-<img width="328" height="443" alt="image" src="https://github.com/user-attachments/assets/e28cf84d-fa8f-4782-926f-cab45c47045d" />
-<br>
+<img width="307" height="174" alt="image" src="https://github.com/user-attachments/assets/7227c983-5145-4fef-96ae-29865b52cd4c" /><br>
+<img width="328" height="443" alt="image" src="https://github.com/user-attachments/assets/e28cf84d-fa8f-4782-926f-cab45c47045d" /><br>
 <br><br><br><br>
 _5 - SpectrumNext_Palette_Viewer.lua_<br>
 <br>
 Once you have exported some palettes using the plugin above, you can then import them to view using this. The options speak for themselves, however, there is an extra feature to this plugin, and that is to tag colours in the palette, allowing the indexed colour to have the priority bit set for further exporting.<br>
 Using this priority bit for Layer 2, forces all pixels set with this to be drawn above all other layers.<br> 
 <br>
-<img width="481" height="623" alt="image" src="https://github.com/user-attachments/assets/f6ba5742-30b2-416e-97da-6dfc1d103f04" />
-<br><br>
+<img width="481" height="623" alt="image" src="https://github.com/user-attachments/assets/f6ba5742-30b2-416e-97da-6dfc1d103f04" /><br><br>
 <img width="481" height="627" alt="image" src="https://github.com/user-attachments/assets/a44e3ca0-359e-4366-81e6-9421e6c68070" />
 <br>
 When tagging is complete, export the palette to save your changes. The next time you import this palette, it will show indexes you have already tagged.<br>
+<br><br><br><br>
+_6 - SpectrumNext_Image_Export.lua_<br>
+<br>
+The image exporter couldn't be easier to use and includes some error checking to inform you if your image is in the correct format.<br>
+Simply select a BMP or NXI export option for the type of image to export.<br>
+If you select BMP, it will give you an option to auto rotate | flip the image, so it's ready to import into your code. This saves using external tools to do this for you.<br>
+The NXI file does not require this, as it is saved as a raw binary file, with no headers or palette included.<br>
+For screen sizes with multiples of 320x256 it will export the data from top to bottom and left to right, all other screen resolutions will export from left to right and top to bottom.<br>
+<br>
+<img width="312" height="125" alt="image" src="https://github.com/user-attachments/assets/9b4b14ea-aba3-4523-bd4f-86745ea54944" /><br>
+<img width="297" height="165" alt="image" src="https://github.com/user-attachments/assets/27d44d96-9335-413a-91bc-96d3d7ead22b" /><br>
+<br><br>
+<img width="312" height="127" alt="image" src="https://github.com/user-attachments/assets/c4b4d150-b251-4242-a358-ac1bbc7ff1bb" /><br>
+<img width="285" height="125" alt="image" src="https://github.com/user-attachments/assets/064d0c3c-b5ca-4f68-bc3d-4af5728c14c6" /><br>
+<br>
+Don't forget you can modify your image colours or export a palette with one of the other plugins.<br>
+<br>
+Image sizes compatible for export are multiples of:<br>
+128 x 96<br>
+256 x 192<br>
+320 x 256<br>
+<br>
 <br><br><br><br><br>
-There will be more useful scripts to follow like image exporting for title screens of 320x256 and 256x192, so make sure you call back.<br>
+There will be updates and more useful scripts to follow, so make sure you call back.<br>
 Have fun and I hope you enjoy the posts and find these materials useful!<br>
 
 Find out all the latest here: https://www.pandapus.com/
