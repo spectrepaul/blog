@@ -1,4 +1,4 @@
--- ZX Spectrum Next Export (.bmp or .nxi)
+-- ZX Spectrum Next Export (.bmp or .bin)
 -- Paul "Spectre" Harthen
 
 -- Manual 90° CCW rotation for indexed bmp image
@@ -14,7 +14,7 @@ local function rotateCCW90(src)
   return rotated
 end
 
--- Export raw index data (.nxi) with conditional scan order
+-- Export raw index data (.bin) with conditional scan order
 local function exportNXI(image, path, paletteSize, is320x256Multiple)
   local file = io.open(path, "wb")
   if not file then
@@ -76,7 +76,7 @@ local function exportNXI(image, path, paletteSize, is320x256Multiple)
   end
 
   file:close()
-  app.alert("Exported NXI file to:\n" .. path)
+  app.alert("Exported BIN file to:\n" .. path)
 end
 
 -- Validate sprite
@@ -117,7 +117,7 @@ local formatDlg = Dialog("Select Export Format")
 formatDlg:combobox{
   id = "format",
   label = "Export Format",
-  options = { "BMP", "NXI" },
+  options = { "BMP", "BIN" }, -- changed from "NXI"
   option = "BMP"
 }
 formatDlg:button{ id = "ok", text = "OK" }
@@ -181,8 +181,8 @@ if data.ok and data.exportFile ~= "" then
     exportSprite:saveCopyAs(path)
     app.alert("Exported BMP image to:\n" .. path)
 
-  elseif selectedFormat == "NXI" then
-    if not path:match("%.nxi$") then path = path .. ".nxi" end
+  elseif selectedFormat == "BIN" then
+    if not path:match("%.bin$") then path = path .. ".bin" end
     exportNXI(srcImage, path, paletteSize, is320x256Multiple)
   end
 end
