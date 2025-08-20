@@ -28,24 +28,12 @@ local function createSpriteSheet()
   local palette = sprite.palettes[1]
   palette:resize(numColors)
 
-  -- ZX Spectrum 16-colour palette (non-bright + bright)
+  -- ZX Spectrum 16-colour palette
   local spectrum16 = {
-    {0, 0, 0},       -- Black
-    {0, 0, 205},     -- Blue
-    {205, 0, 0},     -- Red
-    {205, 0, 205},   -- Magenta
-    {0, 205, 0},     -- Green
-    {0, 205, 205},   -- Cyan
-    {205, 205, 0},   -- Yellow
-    {205, 205, 205}, -- White
-    {0, 0, 0},       -- Bright Black (same as normal)
-    {0, 0, 255},     -- Bright Blue
-    {255, 0, 0},     -- Bright Red
-    {255, 0, 255},   -- Bright Magenta
-    {0, 255, 0},     -- Bright Green
-    {0, 255, 255},   -- Bright Cyan
-    {255, 255, 0},   -- Bright Yellow
-    {255, 255, 255}, -- Bright White
+    {0, 0, 0}, {0, 0, 205}, {205, 0, 0}, {205, 0, 205},
+    {0, 205, 0}, {0, 205, 205}, {205, 205, 0}, {205, 205, 205},
+    {0, 0, 0}, {0, 0, 255}, {255, 0, 0}, {255, 0, 255},
+    {0, 255, 0}, {0, 255, 255}, {255, 255, 0}, {255, 255, 255},
   }
 
   if numColors == 16 then
@@ -55,7 +43,6 @@ local function createSpriteSheet()
     end
 
   elseif numColors == 256 then
-    -- ZX Spectrum Next 256-colour RRRGGGBB palette
     local steps = {0, 36, 73, 109, 146, 182, 219, 255}
     local blueSteps = {0, 85, 170, 255}
     local index = 0
@@ -73,7 +60,6 @@ local function createSpriteSheet()
     end
 
   elseif numColors == 512 then
-    -- ZX Spectrum Next 512-colour RRRGGGBBB palette
     local steps = {0, 36, 73, 109, 146, 182, 219, 255}
     local index = 0
     for r = 0, 7 do
@@ -87,6 +73,22 @@ local function createSpriteSheet()
             })
             index = index + 1
           end
+        end
+      end
+    end
+
+  elseif numColors == 4096 then
+    -- 12-bit RRRRGGGGBBBB palette
+    local index = 0
+    for r = 0, 15 do
+      for g = 0, 15 do
+        for b = 0, 15 do
+          palette:setColor(index, Color{
+            r = r * 17,
+            g = g * 17,
+            b = b * 17
+          })
+          index = index + 1
         end
       end
     end
@@ -119,7 +121,7 @@ dlg:number{
 dlg:combobox{
   id = "numColors",
   label = "Number of Colours",
-  options = { "16", "256", "512" },
+  options = { "16", "256", "512", "4096" },
   option = "256"
 }
 
