@@ -81,26 +81,25 @@ When tagging is complete, export the palette to save your changes. The next time
 _6 - SpectrumNext_Image_Export.lua_<br>
 <br>
 The image exporter couldn't be easier to use and includes some error checking to inform you if your image is in the correct format.<br>
-Simply select a BMP or NXI export option for the type of image to export.<br>
+Simply select a BMP or BIN export option for the type of image to export.<br>
 If you select BMP, it will give you an option to auto rotate | flip the image, so it's ready to import into your code. This saves using external tools to do this for you.<br>
-The NXI file does not require this, as it is saved as a raw binary file, with no headers or palette included.<br>
+The BIN file does not require this, as it is saved as a raw binary file (similar to NXI), with no headers or palette included.<br>
 For screen sizes with multiples of 320x256 it will export the data from top to bottom and left to right, all other screen resolutions will export from left to right and top to bottom.<br>
 <br>
 <img width="312" height="125" alt="image" src="https://github.com/user-attachments/assets/9b4b14ea-aba3-4523-bd4f-86745ea54944" /><br>
 <img width="297" height="165" alt="image" src="https://github.com/user-attachments/assets/27d44d96-9335-413a-91bc-96d3d7ead22b" /><br>
-<br><br>
-<img width="312" height="127" alt="image" src="https://github.com/user-attachments/assets/c4b4d150-b251-4242-a358-ac1bbc7ff1bb" /><br>
 <img width="285" height="125" alt="image" src="https://github.com/user-attachments/assets/064d0c3c-b5ca-4f68-bc3d-4af5728c14c6" /><br>
 <br>
 Don't forget you can modify your image colours or export a palette with one of the other plugins.<br>
 <br>
-Image sizes compatible for export are multiples of:<br>
+Image sizes are not capped to standard layer 2 formats (although it includes these) so be aware when coding what you have exported. However compatible sizes for export are multiples of and including:<br>
 128 x 96<br>
 256 x 192<br>
 320 x 256<br>
 <br>
-<br><br><br><br><br>
-There will be updates and more useful scripts to follow, so make sure you call back.<br>
+This includes ones like 640x256, 640x512, etc.<br>
+<br><br><br>
+There will be more updates and useful scripts to follow, so make sure you call back.<br>
 Have fun and I hope you enjoy the posts and find these materials useful!<br>
 
 Find out all the latest here: https://www.pandapus.com/
