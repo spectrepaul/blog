@@ -31,6 +31,15 @@ Once you press create, it will then make a blank image ready to draw, with a pal
 To change the checkerboard background size when the image is created, you can select: Edit, Preferences and Background, then select the background grid size for the active doc as 8x8 or 16x16.
 <br><br>
 <img width="938" height="717" alt="image" src="https://github.com/user-attachments/assets/733f94fb-15f0-4eb7-9b52-90e1b8372f58" />
+<br><br>
+Don't forget that once you have palettes loaded in, you can add them as a preset in Aseprite to use them again, just by selecting them from the preset list.<br><br>
+<img width="748" height="947" alt="image" src="https://github.com/user-attachments/assets/6eb4c12c-09fe-4950-8a0f-601dcc81f26d" />
+<br><br>
+You can save multiple presets to make your life easier.<br><br>
+<img width="599" height="269" alt="image" src="https://github.com/user-attachments/assets/b2c3c3af-2433-4bb1-aadc-b8830b31a6a2" />
+<br><br>
+And they can be recalled as seen here.<br><br>
+<img width="1106" height="964" alt="image" src="https://github.com/user-attachments/assets/7112a381-b10a-4389-aa7b-bd2a4d34059a" />
 <br>
 <br><br><br><br>
 _2 - SpectrumNext_SpriteSheet_Export.lua_<br>
@@ -98,6 +107,31 @@ Image sizes are not capped to standard layer 2 formats (although it includes the
 320 x 256<br>
 <br>
 This includes ones like 640x256, 640x512, etc.<br>
+<br><br><br><br>
+_7 - SpectrumNext_SpriteSheet_Import.lua_<br>
+<br>
+Spritesheet importer is now available. This alows you to import a set or sprites, tiles or font's in the Next format like, .spr .til, etc. First select the pixel size and colour depth of the sprites you are importing.<br><br>
+<img width="338" height="228" alt="image" src="https://github.com/user-attachments/assets/071891c0-55bf-4496-8412-b913992d06e1" />
+<br><br>
+Then it will ask how many columns wide in sprites you want the image to be. It will show you how many sprites are being imported and put a set value for you here, for as square of an image it can make from this number of sprites. (You can change this value.)
+<br><br>
+<img width="344" height="146" alt="image" src="https://github.com/user-attachments/assets/6ee8e663-2418-42f4-ba13-ef0fa02fb3e6" />
+<br><br>
+The spritesheet will then be created for you, with a grey scale palette with the correct number of colours. 
+<br><br>
+<img width="736" height="525" alt="image" src="https://github.com/user-attachments/assets/c370ac20-596e-4de1-8c5f-63a0b871aed2" />
+<br><br>
+You can then either import the colour palette using the next plugin below or select a default palette from your created presets.<br><br>
+<img width="1106" height="964" alt="image" src="https://github.com/user-attachments/assets/7112a381-b10a-4389-aa7b-bd2a4d34059a" />
+<br>
+<br><br><br><br>
+_8 - SpectrumNext_Palette_Import.lua_<br>
+<br>
+Palette import is really quite straightforward, simply select the .pal file and the plugin will do the rest, loading the colours.<br><br>
+<img width="338" height="142" alt="image" src="https://github.com/user-attachments/assets/326bcb9a-8aa2-41bd-9a5d-5592a7828d13" />
+<br><br>
+For example in the imported spritesheet above.<br><br> 
+<img width="697" height="473" alt="image" src="https://github.com/user-attachments/assets/21051ca4-96d3-4c01-b953-871a10b57205" />
 <br><br><br>
 There will be more updates and useful scripts to follow, so make sure you call back.<br>
 Have fun and I hope you enjoy the posts and find these materials useful!<br>
