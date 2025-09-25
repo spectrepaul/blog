@@ -9,7 +9,7 @@ _File / Scripts / Open scripts folder_
 
 Once copied to the folder, open Aseprite and go to file/scripts and you will see the options to run. If you already have Aseprite open when copying the scripts to the folder, close and open Aseprite again for them to take effect.
 
-# PLUGIN SCRIPTS:
+## PLUGIN SCRIPTS:
 ## **_1 - SpectrumNext_SpriteSheet_CreateBlank.lua_**
 
 This will create a blank image with a Spectrum Next default palette ready to draw your creations.
@@ -61,9 +61,14 @@ It has some simple error checking. So if there is no file loaded to export it wi
 ## **_3 - SpectrumNext_Palette_Convert.lua_**
 
 Here you need a colour indexed image to work with or you are working on (as an example, it could be a title screen image of size 320x256 or 256x192.), then run this script and select the type of colour distancing technique before applying.<br>
-<br>
-Options are - Euclidean, Manhattan, Chebyshev, CIE76, CIEDE2000<br>
-<br>
+
+Options are:
+- Euclidea
+- Manhattan
+- Chebyshev
+- CIE76
+- CIEDE2000
+<br><br>
 <img width="818" height="612" alt="image" src="https://github.com/user-attachments/assets/9a9fa85e-0b25-491b-9192-b6dcca307971" />
 <br><br>
 When run, it will use the method selected to check the palette colours of the image and map them to the closest it can find from the 512 available 9bit colours of the Spectrum Next, hopefully without changing the palette too much.<br>
@@ -104,10 +109,11 @@ For screen sizes with multiples of 320x256 it will export the data from top to b
 Don't forget you can modify your image colours or export a palette with one of the other plugins.<br>
 <br>
 Image sizes are not capped to standard layer 2 formats (although it includes these) so be aware when coding what you have exported. However compatible sizes for export are multiples of and including:<br>
-128 x 96<br>
-256 x 192<br>
-320 x 256<br>
-<br>
+
+- 128 x 96
+- 256 x 192
+- 320 x 256
+
 This includes ones like 640x256, 640x512, etc.<br><br>
 
 ## **_7 - SpectrumNext_SpriteSheet_Import.lua_**
