@@ -9,8 +9,8 @@ _File / Scripts / Open scripts folder_<br>
 <br>
 Once copied to the folder, open Aseprite and go to file/scripts and you will see the options to run. If you already have Aseprite open when copying the scripts to the folder, close and open Aseprite again for them to take effect.<br>
 <br><br>
-PLUGIN SCRIPTS:<br>
-_1 - SpectrumNext_SpriteSheet_CreateBlank.lua_<br>
+# PLUGIN SCRIPTS:<br>
+## _1 - SpectrumNext_SpriteSheet_CreateBlank.lua_<br>
 <br>
 This will create a blank image with a Spectrum Next default palette ready to draw your creations.<br>
 Options on running the script:<br>
@@ -42,7 +42,7 @@ And they can be recalled as seen here.<br><br>
 <img width="1106" height="964" alt="image" src="https://github.com/user-attachments/assets/7112a381-b10a-4389-aa7b-bd2a4d34059a" />
 <br>
 <br><br><br><br>
-_2 - SpectrumNext_SpriteSheet_Export.lua_<br>
+## _2 - SpectrumNext_SpriteSheet_Export.lua_<br>
 <br>
 Use this script to export your sprites or tiles directly from within Aseprite, to load into a memory bank, for example in Boriel Studio or NextBuild. No conversion or other tools are required!<br>
 All you have to do is select pixel size of the sprites/tiles, 8 or 16, and number of colours, 16 or 256.<br>
@@ -56,7 +56,7 @@ You can however select the number from this maximum that you want to export. So 
 The colour palette you use for your image is also down to you, so make sure it is compatible with the Next, however this enables you to use any selection of colours from the 512 available. You would just need to use the same palette in your game.<br>
 It has some simple error checking. So if there is no file loaded to export it will exit. If the image is not divisable by either 8 or 16 it will not proceed and if you have more or less colours in your palette than you are trying to export, again it will not proceed.<br>
 <br><br><br><br>
-_3 - SpectrumNext_Palette_Convert.lua_<br>
+## _3 - SpectrumNext_Palette_Convert.lua_<br>
 <br>
 Here you need a colour indexed image to work with or you are working on (as an example, it could be a title screen image of size 320x256 or 256x192.), then run this script and select the type of colour distancing technique before applying.<br>
 <br>
@@ -67,7 +67,7 @@ Options are - Euclidean, Manhattan, Chebyshev, CIE76, CIEDE2000<br>
 When run, it will use the method selected to check the palette colours of the image and map them to the closest it can find from the 512 available 9bit colours of the Spectrum Next, hopefully without changing the palette too much.<br>
 I will be looking further into this for other possible options which may be useful, so stay tuned!<br>
 <br><br><br><br>
-_4 - SpectrumNext_Palette_Export.lua_<br>
+## _4 - SpectrumNext_Palette_Export.lua_<br>
 <br>
 The palette exporter does exactly what you would expect, exports palettes to load into the Next, but there are a few options.<br>
 It can export both 16 and 256, 9-bit indexed colour palettes in full, from those you have in your image. To export normally then the default position of the offset is "Off".<br>
@@ -77,7 +77,7 @@ The priority bit (bit 7 of the 2nd byte) is not exported with the palette. This 
 <img width="307" height="174" alt="image" src="https://github.com/user-attachments/assets/7227c983-5145-4fef-96ae-29865b52cd4c" /><br>
 <img width="328" height="443" alt="image" src="https://github.com/user-attachments/assets/e28cf84d-fa8f-4782-926f-cab45c47045d" /><br>
 <br><br><br><br>
-_5 - SpectrumNext_Palette_Viewer.lua_<br>
+## _5 - SpectrumNext_Palette_Viewer.lua_<br>
 <br>
 Once you have exported some palettes using the plugin above, you can then import them to view using this. The options speak for themselves, however, there is an extra feature to this plugin, and that is to tag colours in the palette, allowing the indexed colour to have the priority bit set for further exporting.<br>
 Using this priority bit for Layer 2, forces all pixels set with this to be drawn above all other layers.<br> 
@@ -87,7 +87,7 @@ Using this priority bit for Layer 2, forces all pixels set with this to be drawn
 <br>
 When tagging is complete, export the palette to save your changes. The next time you import this palette, it will show indexes you have already tagged.<br>
 <br><br><br><br>
-_6 - SpectrumNext_Image_Export.lua_<br>
+## _6 - SpectrumNext_Image_Export.lua_<br>
 <br>
 The image exporter couldn't be easier to use and includes some error checking to inform you if your image is in the correct format.<br>
 Simply select a BMP or BIN export option for the type of image to export.<br>
@@ -108,7 +108,7 @@ Image sizes are not capped to standard layer 2 formats (although it includes the
 <br>
 This includes ones like 640x256, 640x512, etc.<br>
 <br><br><br><br>
-_7 - SpectrumNext_SpriteSheet_Import.lua_<br>
+## _7 - SpectrumNext_SpriteSheet_Import.lua_<br>
 <br>
 Spritesheet importer is now available. This alows you to import a set or sprites, tiles or font's in the Next format like, .spr .til, etc. First select the pixel size and colour depth of the sprites you are importing.<br><br>
 <img width="338" height="228" alt="image" src="https://github.com/user-attachments/assets/071891c0-55bf-4496-8412-b913992d06e1" />
@@ -125,7 +125,7 @@ You can then either import the colour palette using the next plugin below or sel
 <img width="1106" height="964" alt="image" src="https://github.com/user-attachments/assets/7112a381-b10a-4389-aa7b-bd2a4d34059a" />
 <br>
 <br><br><br><br>
-_8 - SpectrumNext_Palette_Import.lua_<br>
+## _8 - SpectrumNext_Palette_Import.lua_<br>
 <br>
 Palette import is really quite straightforward, simply select the .pal file and the plugin will do the rest, loading the colours.<br><br>
 <img width="338" height="142" alt="image" src="https://github.com/user-attachments/assets/326bcb9a-8aa2-41bd-9a5d-5592a7828d13" />
