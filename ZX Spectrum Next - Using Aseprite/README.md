@@ -5,9 +5,13 @@ I have created a series of plugin scripts you can download and copy directly to 
 For this, you will need the Aseprite software, which you can find here: https://www.aseprite.org
 
 Once this is installed, the folder location to copy the plugins to, can be found by opening Aseprite and in the menu selecting:
-_File / Scripts / Open scripts folder_
+_File / Scripts / Open scripts folder_<br><br>
+<img width="670" height="609" alt="image" src="https://github.com/user-attachments/assets/ac6552f3-ebc3-490e-a8c0-f06de1553ee7" /><br><br>
+Then copy the contents of the Aseprite plugins zip file to this folder.<br><br>
+<img width="521" height="297" alt="image" src="https://github.com/user-attachments/assets/ca2e0e76-6a3b-4f37-946f-a9d802e52e5e" /><br><br>
+Once copied to the folder, open Aseprite and go to file/scripts and you will see the options to run. If you already have Aseprite open when copying the scripts to the folder, close and open Aseprite again for them to take effect.<br><br>
+<img width="643" height="612" alt="image" src="https://github.com/user-attachments/assets/d7a09082-d0f7-4d73-a963-b5f5e19289ff" /><br><br>
 
-Once copied to the folder, open Aseprite and go to file/scripts and you will see the options to run. If you already have Aseprite open when copying the scripts to the folder, close and open Aseprite again for them to take effect.
 
 ## PLUGIN SCRIPTS:
 ## **_1 - SpectrumNext_SpriteSheet_CreateBlank.lua_**
