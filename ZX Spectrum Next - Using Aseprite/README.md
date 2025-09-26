@@ -90,7 +90,8 @@ Once you have exported some palettes using the plugin above, you can then import
 Using this priority bit for Layer 2, forces all pixels set with this to be drawn above all other layers.<br> 
 <br>
 <img width="481" height="623" alt="image" src="https://github.com/user-attachments/assets/f6ba5742-30b2-416e-97da-6dfc1d103f04" /><br><br>
-<img width="481" height="627" alt="image" src="https://github.com/user-attachments/assets/a44e3ca0-359e-4366-81e6-9421e6c68070" /><br>
+<img width="481" height="627" alt="image" src="https://github.com/user-attachments/assets/a44e3ca0-359e-4366-81e6-9421e6c68070" />
+<br>
 When tagging is complete, export the palette to save your changes. The next time you import this palette, it will show indexes you have already tagged.<br><br>
 
 ## **_6 - SpectrumNext_Image_Export.lua_**
@@ -103,7 +104,6 @@ For screen sizes with multiples of 320x256 it will export the data from top to b
 <br>
 <img width="312" height="125" alt="image" src="https://github.com/user-attachments/assets/9b4b14ea-aba3-4523-bd4f-86745ea54944" /><br>
 <img width="297" height="165" alt="image" src="https://github.com/user-attachments/assets/27d44d96-9335-413a-91bc-96d3d7ead22b" /><br>
-<img width="285" height="125" alt="image" src="https://github.com/user-attachments/assets/064d0c3c-b5ca-4f68-bc3d-4af5728c14c6" /><br>
 <br>
 Don't forget you can modify your image colours or export a palette with one of the other plugins.<br>
 <br>
