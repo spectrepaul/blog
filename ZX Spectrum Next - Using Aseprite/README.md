@@ -90,8 +90,7 @@ Once you have exported some palettes using the plugin above, you can then import
 Using this priority bit for Layer 2, forces all pixels set with this to be drawn above all other layers.<br> 
 <br>
 <img width="481" height="623" alt="image" src="https://github.com/user-attachments/assets/f6ba5742-30b2-416e-97da-6dfc1d103f04" /><br><br>
-<img width="481" height="627" alt="image" src="https://github.com/user-attachments/assets/a44e3ca0-359e-4366-81e6-9421e6c68070" />
-<br>
+<img width="481" height="627" alt="image" src="https://github.com/user-attachments/assets/a44e3ca0-359e-4366-81e6-9421e6c68070" /><br>
 When tagging is complete, export the palette to save your changes. The next time you import this palette, it will show indexes you have already tagged.<br><br>
 
 ## **_6 - SpectrumNext_Image_Export.lua_**
