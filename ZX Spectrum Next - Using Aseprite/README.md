@@ -2,7 +2,10 @@
 
 I have created a series of plugin scripts you can download and copy directly to the default Aseprite script folder.
 
-For this, you will need the Aseprite software, which you can find here: https://www.aseprite.org
+If you like these plugins, and want to help me in creating new tools and updating with more features, then please consider a small tip on my ko-fi here:<br>
+https://ko-fi.com/paulharthen
+
+To set the plugins up, you will need the Aseprite software, which you can find here: https://www.aseprite.org
 
 Once this is installed, the folder location to copy the plugins to, can be found by opening Aseprite and in the menu selecting:
 _File / Scripts / Open scripts folder_<br><br>
