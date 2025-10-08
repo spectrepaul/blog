@@ -11,3 +11,6 @@ Again made for ease of use. This time use Aseprite to directly import/export, sp
 I hope you enjoy the posts and find these materials useful, but make sure you check back in for other additions!<br><br>
 Check my blog here: https://www.pandapus.com/
 
+A little support goes a long way! If you like these plugins, and want to help me in creating new tools and updating with more features, then please consider a small tip on my ko-fi here:
+
+https://ko-fi.com/paulharthen
