@@ -147,7 +147,17 @@ Palette import is really quite straightforward, simply select the .pal file and 
 <img width="338" height="142" alt="image" src="https://github.com/user-attachments/assets/326bcb9a-8aa2-41bd-9a5d-5592a7828d13" />
 <br><br>
 For example in the imported spritesheet above.<br><br> 
-<img width="697" height="473" alt="image" src="https://github.com/user-attachments/assets/21051ca4-96d3-4c01-b953-871a10b57205" />
+<img width="697" height="473" alt="image" src="https://github.com/user-attachments/assets/21051ca4-96d3-4c01-b953-871a10b57205" /><br><br>
+
+## **_9 - SpectrumNext_Image_PixelErrors.lua_**
+
+This is a plugin for checking stray pixels on ULA images. If you are creating an image for this, then each 8x8 pixel cell needs to use no more than 2 colours for ink and paper, from the palette of colours used.<br>
+It is a simple plugin. Just select the RGB values of the colour which will show you the erros, picking one which will stand out on your image. Then select if you want the border on or off. This will then show you the stray pixles in the colour selected, or show you them with an 8x8 border around the cell area.<br><br>
+<img width="192" height="234" alt="image" src="https://github.com/user-attachments/assets/f4ffb003-0c4c-4315-90b1-1abc4e02ce4e" />
+<br><br>
+Here you can see bright green has been used to highlight with an 8x8 cell border, where errors are on the image. From here you can correct your image and test again to make sure all stray pixels have gone.<br><br>
+<img width="1097" height="669" alt="image" src="https://github.com/user-attachments/assets/cd509e39-a007-4ccc-bf26-c2d666c09d2a" />
+
 <br><br><br>
 There will be more updates and useful scripts to follow, so make sure you call back.<br>
 Have fun and I hope you enjoy the posts and find these materials useful!<br>
