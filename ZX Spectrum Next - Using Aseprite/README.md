@@ -121,6 +121,9 @@ Image sizes are not capped to standard layer 2 formats (although it includes the
 - 320 x 256
 
 This includes ones like 640x256, 640x512, etc.<br><br>
+<img width="288" height="152" alt="image" src="https://github.com/user-attachments/assets/db173808-9677-4f52-a348-bb5e38860e73" /><br><br>
+When exporting a binary file, you can select the screen size, or what type of multiple it is for large screen sizes.<br>
+The large screen sizes will save the data in a sort of screen tiled sections method, from left to right and top to bottom, with each screen tile section of pixels being saved as mentioned above dependant on the multiple, eg 320x256 / 256x192. This can be very useful for using overscroll.<br><br>
 
 ## **_7 - SpectrumNext_SpriteSheet_Import.lua_**
 
