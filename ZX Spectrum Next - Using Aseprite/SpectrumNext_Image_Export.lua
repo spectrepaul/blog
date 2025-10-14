@@ -14,64 +14,77 @@ local function rotateCCW90(src)
   return rotated
 end
 
--- Export raw index data (.bin) with conditional scan order
-local function exportNXI(image, path, paletteSize, is320x256Multiple)
+-- Export raw index data (.bin) with fixed scan order
+local function exportNXI(image, path, paletteSize, screenWidth, screenHeight)
   local file = io.open(path, "wb")
   if not file then
     app.alert("Failed to open file for writing:\n" .. path)
     return
   end
 
-  if paletteSize == 16 then
-    if is320x256Multiple then
-      -- Top-to-bottom, left-to-right
-      for x = 0, image.width - 1 do
-        local y = 0
-        while y < image.height do
-          local px1 = image:getPixel(x, y) & 0x0F
-          local px2 = 0
-          if y + 1 < image.height then
-            px2 = image:getPixel(x, y + 1) & 0x0F
+  local screensWide = image.width // screenWidth
+  local screensHigh = image.height // screenHeight
+
+  local function writeSection(x0, y0)
+    if paletteSize == 16 then
+      if screenWidth == 320 and screenHeight == 256 then
+        -- Top-to-bottom, left-to-right
+        for x = x0, x0 + screenWidth - 1 do
+          local y = y0
+          while y < y0 + screenHeight do
+            local px1 = image:getPixel(x, y) & 0x0F
+            local px2 = 0
+            if y + 1 < y0 + screenHeight then
+              px2 = image:getPixel(x, y + 1) & 0x0F
+            end
+            local packed = (px1 << 4) | px2
+            file:write(string.char(packed))
+            y = y + 2
           end
-          local packed = (px1 << 4) | px2
-          file:write(string.char(packed))
-          y = y + 2
+        end
+      else
+        -- Left-to-right, top-to-bottom
+        for y = y0, y0 + screenHeight - 1 do
+          local x = x0
+          while x < x0 + screenWidth do
+            local px1 = image:getPixel(x, y) & 0x0F
+            local px2 = 0
+            if x + 1 < x0 + screenWidth then
+              px2 = image:getPixel(x + 1, y) & 0x0F
+            end
+            local packed = (px1 << 4) | px2
+            file:write(string.char(packed))
+            x = x + 2
+          end
         end
       end
-    else
-      -- Left-to-right, top-to-bottom
-      for y = 0, image.height - 1 do
-        local x = 0
-        while x < image.width do
-          local px1 = image:getPixel(x, y) & 0x0F
-          local px2 = 0
-          if x + 1 < image.width then
-            px2 = image:getPixel(x + 1, y) & 0x0F
+
+    elseif paletteSize == 256 then
+      if screenWidth == 320 and screenHeight == 256 then
+        -- Top-to-bottom, left-to-right
+        for x = x0, x0 + screenWidth - 1 do
+          for y = y0, y0 + screenHeight - 1 do
+            local index = image:getPixel(x, y) & 0xFF
+            file:write(string.char(index))
           end
-          local packed = (px1 << 4) | px2
-          file:write(string.char(packed))
-          x = x + 2
+        end
+      else
+        -- Left-to-right, top-to-bottom
+        for y = y0, y0 + screenHeight - 1 do
+          for x = x0, x0 + screenWidth - 1 do
+            local index = image:getPixel(x, y) & 0xFF
+            file:write(string.char(index))
+          end
         end
       end
     end
+  end
 
-  elseif paletteSize == 256 then
-    if is320x256Multiple then
-      -- Top-to-bottom, left-to-right
-      for x = 0, image.width - 1 do
-        for y = 0, image.height - 1 do
-          local index = image:getPixel(x, y) & 0xFF
-          file:write(string.char(index))
-        end
-      end
-    else
-      -- Left-to-right, top-to-bottom
-      for y = 0, image.height - 1 do
-        for x = 0, image.width - 1 do
-          local index = image:getPixel(x, y) & 0xFF
-          file:write(string.char(index))
-        end
-      end
+  for screenY = 0, screensHigh - 1 do
+    for screenX = 0, screensWide - 1 do
+      local originX = screenX * screenWidth
+      local originY = screenY * screenHeight
+      writeSection(originX, originY)
     end
   end
 
@@ -117,7 +130,7 @@ local formatDlg = Dialog("Select Export Format")
 formatDlg:combobox{
   id = "format",
   label = "Export Format",
-  options = { "BMP", "BIN" }, -- changed from "NXI"
+  options = { "BMP", "BIN" },
   option = "BMP"
 }
 formatDlg:button{ id = "ok", text = "OK" }
@@ -130,15 +143,28 @@ local selectedFormat = formatData.format
 
 -- Export dialog (conditional UI)
 local dlg = Dialog("Export Indexed Image")
-dlg:file{
-  id = "exportFile",
-  label = "Export File",
-  title = "Save Image",
-  save = true,
-  filetypes = { selectedFormat:lower() }
-}
-
-if selectedFormat == "BMP" then
+if selectedFormat == "BIN" then
+  dlg:file{
+    id = "exportFile",
+    label = "Export File",
+    title = "Save NXI/BIN File",
+    save = true,
+    filetypes = { "nxi", "bin" },
+  }
+  dlg:combobox{
+    id = "screenMulti",
+    label = "Screen Size",
+    options = { "320x256", "256x192", "128x96" },
+    option = "320x256"
+  }
+else
+  dlg:file{
+    id = "exportFile",
+    label = "Export File",
+    title = "Save Image",
+    save = true,
+    filetypes = { "bmp" },
+  }
   dlg:combobox{
     id = "transform",
     label = "Flip / Rotate",
@@ -155,6 +181,7 @@ local data = dlg.data
 if data.ok and data.exportFile ~= "" then
   local path = data.exportFile
   local transformOption = data.transform or "Off"
+  local screenMultiOption = data.screenMulti or "320x256"
 
   -- Apply transformation based on user selection
   local transformed
@@ -182,7 +209,22 @@ if data.ok and data.exportFile ~= "" then
     app.alert("Exported BMP image to:\n" .. path)
 
   elseif selectedFormat == "BIN" then
-    if not path:match("%.bin$") then path = path .. ".bin" end
-    exportNXI(srcImage, path, paletteSize, is320x256Multiple)
+    if not path:match("%.nxi$") and not path:match("%.bin$") then
+      path = path .. ".nxi"
+    end
+
+    local screenWidth, screenHeight
+    if is320x256Multiple and screenMultiOption == "320x256" then
+      screenWidth, screenHeight = 320, 256
+    elseif is256x192Multiple and screenMultiOption == "256x192" then
+      screenWidth, screenHeight = 256, 192
+    elseif is128x96Multiple and screenMultiOption == "128x96" then
+      screenWidth, screenHeight = 128, 96
+    else
+      app.alert("Selected screen size does not match image multiple.")
+      return
+    end
+
+    exportNXI(srcImage, path, paletteSize, screenWidth, screenHeight)
   end
 end
