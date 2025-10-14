@@ -1,8 +1,13 @@
 # Spectres Plugins for the ZX Spectrum Next (Tiled)
 
 I have created a series of plugin scripts to be placed in the default Tiled plugins folder.<br>
-For this, you will need the Tiled software, which you can find here: https://www.mapeditor.org/
-<br>
+
+If you like these plugins, and want to help me in creating new tools and updating with more features, then please consider a small tip on my ko-fi here:<br>
+https://ko-fi.com/paulharthen
+<br><br>
+In order to set the plugins up, you will need the Tiled software, which you can find here:<br>
+https://www.mapeditor.org/
+<br><br>
 Once installed, you can find the folder location to copy to, by opening Tiled and selecting preferences and plugins. Then press Open to get to the directory.<br>
 You will also need the PNG images I created for numbers 0-15, to use as reference tiles, however these don't go in the plugins folder, so save elsewhere.<br>
 <br>
