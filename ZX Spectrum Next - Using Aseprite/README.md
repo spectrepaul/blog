@@ -156,7 +156,35 @@ It is a simple plugin. Just select the RGB values of the colour which will show 
 <img width="192" height="234" alt="image" src="https://github.com/user-attachments/assets/f4ffb003-0c4c-4315-90b1-1abc4e02ce4e" />
 <br><br>
 Here you can see bright green has been used to highlight with an 8x8 cell border, where errors are on the image. From here you can correct your image and test again to make sure all stray pixels have gone.<br><br>
-<img width="1097" height="669" alt="image" src="https://github.com/user-attachments/assets/cd509e39-a007-4ccc-bf26-c2d666c09d2a" />
+<img width="1097" height="669" alt="image" src="https://github.com/user-attachments/assets/cd509e39-a007-4ccc-bf26-c2d666c09d2a" /><br><br>
+
+## **_10 - SpectrumNext_Image_Export_ULA_SCR.lua_**
+
+The SCR exporter takes a 256×192 indexed image, and converts it into the Spectrum’s .scr screen format. It first validates the image, then builds the bitmap section (6144 bytes) by packing each group of 8 pixels into a byte and arranging them in the Spectrum’s three‑band memory order. Then it constructs the attribute section (768 bytes) by scanning each 8×8 cell, choosing ink and paper colours, and encoding them into attribute bytes with INK, PAPER, and BRIGHT bits.<br> 
+Finally, it writes both sections sequentially to disk, producing a 6912‑byte file that the Spectrum Next can display.<br><br>
+Only the first 32 palette indexes are exported if used, and each 8x8 pixel group can only contain 2 colours of normal or bright index colours. You can't use for example a normal ink and bright paper index, it would have to be normal ink and paper or bright ink and paper in each 8x8 group.<br>
+
+Palette index:
+
+- 0–7	Normal INK colours<br>
+- 8–15	Bright INK colours (Uses bright attribute)<br>
+- 16–23	Normal PAPER colours<br>
+- 24–31	Bright PAPER colours (Uses bright attribute)
+
+Attribute Byte Construction:
+
+- Bits 0–2: INK (0–7)<br>
+- Bits 3–5: PAPER (0–7)<br>
+- Bit 6: BRIGHT (set if INK ≥8 or PAPER ≥24)<br>
+- Bit 7: FLASH (unused, always 0)
+<br><br>
+
+## **_11 - SpectrumNext_Image_Import_ULA_SCR.lua_**
+
+The SCR importer reads a 6912‑byte .scr file and reconstructs it as a 256×192 indexed image. It splits the data into the bitmap section (6144 bytes) and the attribute section (768 bytes), then decodes the Spectrum’s non‑linear screen memory layout to place each pixel correctly.<br>
+Using the attribute bytes, it maps each 8×8 cell to its INK and PAPER colours, applies the BRIGHT flag, and assigns the right palette indices.<br>
+Finally, it creates a standard 256‑colour palette for the Next, however as palette colours are not saved in the scr file you would have to change them yourself.<br>
+Don't forget there are palette plugins for importing and exporting.<br>
 
 <br><br><br>
 There will be more updates and useful scripts to follow, so make sure you call back.<br>
