@@ -14,4 +14,4 @@ Again made for ease of use. This time use Aseprite to directly import/export, sp
 I hope you enjoy the posts and find these materials useful, but make sure you check back in for other additions!<br><br>
 Check my blog here: https://www.pandapus.com/
 
-Check here for other retro greats: https://rainbowring.zingot.graphics/widget/webring.js
+Check here for other retro greats: https://rainbowring.zingot.graphics/widget/webring
